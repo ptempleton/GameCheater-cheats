@@ -1,0 +1,41 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "GameCheater trainer definition",
+  "type": "object",
+  "required": ["game", "process", "cheats"],
+  "properties": {
+    "game": { "type": "string", "description": "Display name, e.g. SnowRunner" },
+    "process": { "type": "string", "description": "Process name without .exe" },
+    "gameVersion": { "type": "string", "description": "Game build these signatures were found against" },
+    "revision": { "type": "integer", "description": "Bump when the definition changes" },
+    "cheats": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["name", "type", "resolve"],
+        "properties": {
+          "name": { "type": "string" },
+          "category": { "type": "string" },
+          "description": { "type": "string" },
+          "type": { "enum": ["freeze", "patch"] },
+          "valueType": { "enum": ["byte", "short", "int", "long", "float", "double"], "description": "freeze only" },
+          "value": { "type": "string", "description": "freeze: initial value; omit to freeze at current" },
+          "resolveEachTick": { "type": "boolean", "description": "re-walk resolver each tick (moving pointers)" },
+          "patch": { "type": "string", "description": "patch only: hex bytes, e.g. '90 90 90'" },
+          "resolve": {
+            "type": "object",
+            "required": ["kind"],
+            "properties": {
+              "kind": { "enum": ["pointer", "aob", "aobPointer", "static"] },
+              "moduleOffset": { "type": "string", "description": "hex offset from module base, e.g. '0x1A2B3C'" },
+              "module": { "type": "string", "description": "named module for static (default: main module)" },
+              "offsets": { "type": "array", "items": { "type": "string" }, "description": "pointer offsets, hex" },
+              "pattern": { "type": "string", "description": "AOB pattern, e.g. '48 8B 05 ?? ?? ?? ??'" },
+              "aobOffset": { "type": "integer" }
+            }
+          }
+        }
+      }
+    }
+  }
+}

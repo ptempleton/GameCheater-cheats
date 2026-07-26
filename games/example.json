@@ -1,0 +1,45 @@
+{
+  "game": "Example Game",
+  "process": "ExampleGame",
+  "gameVersion": "template",
+  "revision": 1,
+  "cheats": [
+    {
+      "name": "Infinite Health",
+      "category": "Player",
+      "description": "TEMPLATE — replace the resolver with a real pointer chain you found.",
+      "type": "freeze",
+      "valueType": "float",
+      "resolveEachTick": true,
+      "resolve": {
+        "kind": "pointer",
+        "moduleOffset": "0x0",
+        "offsets": ["0x0"]
+      }
+    },
+    {
+      "name": "Set Money",
+      "category": "Economy",
+      "description": "TEMPLATE — 'value' omitted means freeze at the game's current value.",
+      "type": "freeze",
+      "valueType": "int",
+      "resolve": {
+        "kind": "static",
+        "module": "ExampleGame.exe",
+        "moduleOffset": "0x0"
+      }
+    },
+    {
+      "name": "No Damage",
+      "category": "Player",
+      "description": "TEMPLATE — patch bytes + AOB over the ORIGINAL code (from --watch-code).",
+      "type": "patch",
+      "patch": "90 90 90 90 90",
+      "resolve": {
+        "kind": "aob",
+        "pattern": "00 00 00 00 00",
+        "aobOffset": 0
+      }
+    }
+  ]
+}

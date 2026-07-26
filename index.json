@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "games": [
+    {
+      "game": "Example Game",
+      "file": "games/example.json",
+      "revision": 1,
+      "gameVersion": "template"
+    }
+  ]
+}
