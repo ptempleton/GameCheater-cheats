@@ -12,12 +12,18 @@
       "type": "array",
       "items": {
         "type": "object",
-        "required": ["name", "type", "resolve"],
+        "required": ["name", "type"],
         "properties": {
           "name": { "type": "string" },
           "category": { "type": "string" },
           "description": { "type": "string" },
-          "type": { "enum": ["freeze", "patch"] },
+          "type": { "enum": ["freeze", "patch", "composite"] },
+          "members": {
+            "type": "array",
+            "items": { "type": "string" },
+            "minItems": 1,
+            "description": "composite only: names of cheats toggled transactionally"
+          },
           "valueType": { "enum": ["byte", "short", "int", "long", "float", "double"], "description": "freeze only" },
           "value": { "type": "string", "description": "freeze: initial value; omit to freeze at current" },
           "resolveEachTick": { "type": "boolean", "description": "re-walk resolver each tick (moving pointers)" },
@@ -34,7 +40,17 @@
               "aobOffset": { "type": "integer" }
             }
           }
-        }
+        },
+        "allOf": [
+          {
+            "if": { "properties": { "type": { "enum": ["freeze", "patch"] } } },
+            "then": { "required": ["resolve"] }
+          },
+          {
+            "if": { "properties": { "type": { "const": "composite" } } },
+            "then": { "required": ["members"] }
+          }
+        ]
       }
     }
   }

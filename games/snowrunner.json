@@ -2,8 +2,20 @@
   "game": "SnowRunner",
   "process": "SnowRunner",
   "gameVersion": "Steam build, tested 2026-08-16",
-  "revision": 4,
+  "revision": 5,
   "cheats": [
+    {
+      "name": "No Vehicle Damage (except tires)",
+      "category": "Vehicle",
+      "description": "Master toggle for engine, transmission, fuel-tank, and suspension damage protection. Tires remain excluded until their individual damage storage is solved.",
+      "type": "composite",
+      "members": [
+        "No Engine Damage",
+        "No Transmission Damage",
+        "No Fuel Tank Damage",
+        "No Suspension Damage"
+      ]
+    },
     {
       "name": "Infinite Fuel",
       "category": "Vehicle",
