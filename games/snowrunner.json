@@ -2,7 +2,7 @@
   "game": "SnowRunner",
   "process": "SnowRunner",
   "gameVersion": "Steam build, tested 2026-08-16",
-  "revision": 3,
+  "revision": 4,
   "cheats": [
     {
       "name": "Infinite Fuel",
@@ -61,6 +61,21 @@
         "module": "SnowRunner.exe",
         "moduleOffset": "0x2A8EDD8",
         "offsets": ["0x8", "0x160", "0x38"]
+      }
+    },
+    {
+      "name": "No Fuel Tank Damage",
+      "category": "Vehicle",
+      "description": "Keeps the active truck's accumulated fuel-tank damage at zero. Found in-house by scanning 50 minus current integrity; verified live by restoring 50/50 and across a fresh SnowRunner relaunch where the chain reported exactly 50 minus current integrity.",
+      "type": "freeze",
+      "valueType": "int",
+      "value": "0",
+      "resolveEachTick": true,
+      "resolve": {
+        "kind": "pointer",
+        "module": "SnowRunner.exe",
+        "moduleOffset": "0x2A8EDD8",
+        "offsets": ["0x8", "0x158", "0x38"]
       }
     }
   ]
