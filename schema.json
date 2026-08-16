@@ -24,6 +24,10 @@
             "minItems": 1,
             "description": "composite only: names of cheats toggled transactionally"
           },
+          "hideMembers": {
+            "type": "boolean",
+            "description": "composite only: hide member cheats from the visible cheat list"
+          },
           "valueType": { "enum": ["byte", "short", "int", "long", "float", "double"], "description": "freeze only" },
           "value": { "type": "string", "description": "freeze: initial value; omit to freeze at current" },
           "resolveEachTick": { "type": "boolean", "description": "re-walk resolver each tick (moving pointers)" },
