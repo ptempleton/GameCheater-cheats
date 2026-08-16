@@ -2,6 +2,12 @@
   "version": 1,
   "games": [
     {
+      "game": "SnowRunner",
+      "file": "games/snowrunner.json",
+      "revision": 1,
+      "gameVersion": "Steam build, tested 2026-08-16"
+    },
+    {
       "game": "Example Game",
       "file": "games/example.json",
       "revision": 1,

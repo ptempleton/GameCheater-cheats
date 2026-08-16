@@ -1,0 +1,22 @@
+{
+  "game": "SnowRunner",
+  "process": "SnowRunner",
+  "gameVersion": "Steam build, tested 2026-08-16",
+  "revision": 1,
+  "cheats": [
+    {
+      "name": "Infinite Fuel",
+      "category": "Vehicle",
+      "description": "Holds the active truck's fuel so it never drains. Enable it with a full-ish tank; it freezes fuel at whatever level it's at when you turn it on. Durable pointer chain found in-house (range-scan the fuel float, freeze, pointer-scan); verified across two relaunches.",
+      "type": "freeze",
+      "valueType": "float",
+      "resolveEachTick": true,
+      "resolve": {
+        "kind": "pointer",
+        "module": "SnowRunner.exe",
+        "moduleOffset": "0x2AA17F0",
+        "offsets": ["0x28", "0x5E8"]
+      }
+    }
+  ]
+}
