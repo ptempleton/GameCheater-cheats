@@ -28,3 +28,36 @@ schema.json           # the definition shape
 3. Commit. Clients refresh and pick it up.
 
 See `games/example.json` for a template and `schema.json` for the full shape.
+
+## Definition types
+
+- `freeze`: write or hold a typed value. Set `resolveEachTick` for moving object chains.
+- `patch`: replace code bytes; the client saves and restores the original bytes.
+- `composite`: transactionally toggle concrete cheats named in `members`.
+
+A composite may set `"hideMembers": true`. Supporting clients then show only the composite row
+while retaining every member internally for enable, rollback, disable, and teardown. Member names
+are case-insensitive and must resolve to concrete cheats in the same definition.
+
+Composite/runtime/schema features must ship in the client before a definition depends on them.
+Normal pointer, value, description, and member-list updates require only a definition revision.
+
+## SnowRunner
+
+`games/snowrunner.json` revision 6 contains:
+
+- **Infinite Fuel**
+- **No Vehicle Damage (except tires)**, a visible composite over engine, transmission, fuel-tank,
+  and suspension accumulator freezes
+- Four concrete damage cheats hidden by the composite
+
+Tires are not included. Their authoritative per-tire storage is still unknown, so the master must
+retain the **except tires** label.
+
+When changing SnowRunner:
+
+1. Update `games/snowrunner.json`.
+2. Bump its top-level `revision`.
+3. Bump the SnowRunner revision in `index.json` to the same number.
+4. Validate both JSON files and `schema.json`.
+5. Open a PR. Do not merge without owner approval.
